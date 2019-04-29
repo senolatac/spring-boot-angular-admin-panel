@@ -1,0 +1,3 @@
+<app-admin-template *ngIf="isAdminPanel"></app-admin-template>
+<app-user-template *ngIf="!isAdminPanel" ></app-user-template>
+<router-outlet></router-outlet>

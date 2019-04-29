@@ -1,0 +1,77 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet id="1" author="sha">
+        <sql>
+            CREATE TABLE user (
+            id BIGINT NOT NULL AUTO_INCREMENT,
+            username VARCHAR(255) NOT NULL,
+            password VARCHAR(255) NOT NULL,
+            name VARCHAR(255) NOT NULL,
+            role VARCHAR(255) NOT NULL,
+            CONSTRAINT PK_id PRIMARY KEY (id)
+            );
+        </sql>
+        <rollback>
+            DROP TABLE user;
+        </rollback>
+    </changeSet>
+    <changeSet id="2" author="sha">
+        <sql>
+            CREATE TABLE product (
+            id BIGINT NOT NULL AUTO_INCREMENT,
+            name VARCHAR(255) NOT NULL,
+            price DOUBLE,
+            explanation VARCHAR(1000),
+            CONSTRAINT PK_id PRIMARY KEY (id)
+            );
+        </sql>
+        <rollback>
+            DROP TABLE product;
+        </rollback>
+    </changeSet>
+    <changeSet id="3" author="sha">
+        <sql>
+            INSERT INTO product (name, price, explanation) values("Product 1", 19.99,
+            "Product is so effective and has many attributes like X, Y, Z. Also, we can say about it...");
+            INSERT INTO product (name, price, explanation) values("Product 2", 10.99,
+            "Product is so effective and has many attributes like X, Y, Z. Also, we can say about it...");
+            INSERT INTO product (name, price, explanation) values("Product 3", 14.99,
+            "Product is so effective and has many attributes like X, Y, Z. Also, we can say about it...");
+            INSERT INTO product (name, price, explanation) values("Product 4", 15.99,
+            "Product is so effective and has many attributes like X, Y, Z. Also, we can say about it...");
+            INSERT INTO product (name, price, explanation) values("Product 5", 69.99,
+            "Product is so effective and has many attributes like X, Y, Z. Also, we can say about it...");
+            INSERT INTO product (name, price, explanation) values("Product 6", 59.99,
+            "Product is so effective and has many attributes like X, Y, Z. Also, we can say about it...");
+            INSERT INTO product (name, price, explanation) values("Product 7", 49.99,
+            "Product is so effective and has many attributes like X, Y, Z. Also, we can say about it...");
+            INSERT INTO product (name, price, explanation) values("Product 8", 39.99,
+            "Product is so effective and has many attributes like X, Y, Z. Also, we can say about it...");
+            INSERT INTO product (name, price, explanation) values("Product 9", 29.99,
+            "Product is so effective and has many attributes like X, Y, Z. Also, we can say about it...");
+            INSERT INTO product (name, price, explanation) values("Product 10", 9.99,
+            "Product is so effective and has many attributes like X, Y, Z. Also, we can say about it...");
+        </sql>
+        <rollback>
+            TRUNCATE TABLE product;
+        </rollback>
+    </changeSet>
+    <changeSet id="4" author="sha">
+        <sql>
+            CREATE TABLE transaction(
+            id BIGINT NOT NULL AUTO_INCREMENT,
+            product_id BIGINT NOT NULL,
+            user_id BIGINT NOT NULL,
+            purchase_date DATETIME NOT NULL,
+            CONSTRAINT PK_id PRIMARY KEY (id),
+            CONSTRAINT fk_tran_product FOREIGN KEY (product_id) REFERENCES product(id) ON DELETE CASCADE ON UPDATE
+            CASCADE,
+            CONSTRAINT fk_tran_user FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE ON UPDATE
+            CASCADE
+            );
+        </sql>
+        <rollback>
+            DROP TABLE transaction;
+        </rollback>
+    </changeSet>
+</databaseChangeLog>
