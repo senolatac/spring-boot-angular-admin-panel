@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@Transactional
+@Transactional //It is not necessary. You can use it, if you have multiple database operation in a single service method.
 public class ProductServiceImpl implements ProductService {
 
     @Autowired

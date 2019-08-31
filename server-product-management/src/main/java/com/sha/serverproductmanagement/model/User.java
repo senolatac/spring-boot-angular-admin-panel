@@ -3,12 +3,11 @@ package com.sha.serverproductmanagement.model;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Data
 @Entity
 @Table(name="user")
-public class User implements Serializable {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,6 +26,7 @@ public class User implements Serializable {
     @Column(name="role")
     private Role role;
 
+	//Not persistent. There is no column on database table.
     @Transient
     private String token;
 }

@@ -10,12 +10,12 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@Transactional
 public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
 
+	//It will be provided on WebSecurityConfig as @Bean
     @Autowired
     private PasswordEncoder passwordEncoder;
 
@@ -23,8 +23,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User saveUser(final User user){
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
-        return user;
+        return userRepository.save(user);
     }
 
     //save = create or update

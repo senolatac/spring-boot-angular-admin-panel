@@ -1,9 +1,8 @@
 plugins {
-	id 'org.springframework.boot' version '2.1.4.RELEASE'
+	id 'org.springframework.boot' version '2.1.7.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
 	id 'java'
 }
-
-apply plugin: 'io.spring.dependency-management'
 
 group = 'com.sha'
 version = '0.0.1-SNAPSHOT'
